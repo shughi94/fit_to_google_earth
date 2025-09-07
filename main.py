@@ -6,8 +6,8 @@ from simplekml import Kml
 
 # ------VARIABLES-----------
 
-PERCENTAGE_OF_LINE = 50
-ALTITUDE_ERROR = 0
+PERCENTAGE_OF_LINE = 100
+ALTITUDE_ERROR = 40
 
 # -----------------------
 
