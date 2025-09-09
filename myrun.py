@@ -3,8 +3,13 @@
 from garmin_fit_sdk import Decoder, Stream
 import datetime
 import numpy as np
+import sys
 
-FIT_File = "Activity.fit"
+if len(sys.argv)<2:
+    FIT_File = "Activity.fit"
+else:
+    FIT_File =  sys.argv[1]
+
 # read .fit file
 stream = Stream.from_file(FIT_File)
 decoder = Decoder(stream)
@@ -150,15 +155,13 @@ with open(kml_file, "w", encoding="utf-8") as f:
         f.write(f"        <gx:duration>{flyto_duration}</gx:duration>\n")
         f.write("        <gx:flyToMode>smooth</gx:flyToMode>\n")
         f.write("        <Camera>\n")
-#         f.write("        <LookAt>\n")
         f.write(f"          <longitude>{lon}</longitude>\n")
         f.write(f"          <latitude>{lat}</latitude>\n")
         f.write(f"          <altitude>{ele}</altitude>\n")  # altezza camera sopra il terreno
-        f.write("          <heading>(camera_heading)</heading>\n")
-        f.write("          <tilt>(camera_tilt)</tilt>\n")
-        f.write("          <range>(camera_range)</range>\n")
+        f.write(f"          <heading>{camera_heading}</heading>\n")
+        f.write(f"          <tilt>{camera_tilt}</tilt>\n")
+        f.write(f"          <range>{camera_range}</range>\n")
         f.write("          <altitudeMode>absolute</altitudeMode>\n")
-#         f.write("        </LookAt>\n")
         f.write("        </Camera>\n")
         f.write("      </gx:FlyTo>\n")
 
